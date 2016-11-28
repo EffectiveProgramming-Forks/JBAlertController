@@ -1,0 +1,16 @@
+PODS:
+  - JBAlertController (0.1.0)
+
+DEPENDENCIES:
+  - JBAlertController (from `../`)
+
+EXTERNAL SOURCES:
+  JBAlertController:
+    :path: ../
+
+SPEC CHECKSUMS:
+  JBAlertController: 0b07562466a4108df74718534e5f504b8531a2ad
+
+PODFILE CHECKSUM: e0942ed7ec44937a119d2ee0783f1932d0b81a6e
+
+COCOAPODS: 1.1.0
