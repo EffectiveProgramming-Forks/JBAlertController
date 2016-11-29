@@ -1,5 +1,5 @@
 #
-# Be sure to run `pod lib lint JBAlertController.podspec' to ensure this is a
+# Be sure to run `pod lib lint JBScrollingTabBarController.podspec' to ensure this is a
 # valid spec before submitting.
 #
 # Any lines starting with a # are optional, but their use is encouraged
@@ -7,36 +7,18 @@
 #
 
 Pod::Spec.new do |s|
+  s.platform = :ios
+  s.ios.deployment_target = "10"
   s.name             = 'JBAlertController'
   s.version          = '0.1.0'
-  s.summary          = 'A short description of JBAlertController.'
-
-# This description is used to generate tags and improve search results.
-#   * Think: What does it do? Why did you write it? What is the focus?
-#   * Try to keep it short, snappy and to the point.
-#   * Write the description between the DESC delimiters below.
-#   * Finally, don't worry about the indent, CocoaPods strips it!
-
-  s.description      = <<-DESC
-TODO: Add long description of the pod here.
-                       DESC
-
-  s.homepage         = 'https://github.com/<GITHUB_USERNAME>/JBAlertController'
-  # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
+  s.summary          = 'JBAlertController is a Swift framework that allows the user to display a customizable alert view.'
+  s.description      = 'JBAlertController is a Swift framework that allows the user to display a customizable alert view.'
+  s.homepage         = 'https://github.com/jkbreunig/JBAlertController'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'Jeff Breunig' => 'jkbreunig@gmail.com' }
-  s.source           = { :git => 'https://github.com/<GITHUB_USERNAME>/JBAlertController.git', :tag => s.version.to_s }
-  # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
+  s.source           = { :git => 'https://github.com/jkbreunig/JBAlertController.git', :tag => s.version.to_s }
 
-  s.ios.deployment_target = '8.0'
+  s.ios.deployment_target = '9.0'
+  s.source_files = 'JBAlertController', 'JBAlertController/**/*.{h,m,swift}'
 
-  s.source_files = 'JBAlertController/Classes/**/*'
-  
-  # s.resource_bundles = {
-  #   'JBAlertController' => ['JBAlertController/Assets/*.png']
-  # }
-
-  # s.public_header_files = 'Pod/Classes/**/*.h'
-  # s.frameworks = 'UIKit', 'MapKit'
-  # s.dependency 'AFNetworking', '~> 2.3'
 end
