@@ -6,13 +6,13 @@
 //
 //
 
-public class JBTitleOutsideAlertController: JBAlertController, JBAlertControllerDelegate {
+class JBTitleOutsideAlertController: JBAlertController, JBAlertControllerDelegate {
     private let titleLabel = UILabel()
     private let secondaryTitleLabel = UILabel()
     
     // MARK: Designated initializer
     
-    public init(title: String,
+    init(title: String,
                 secondaryTitle: String,
                 titleFont: UIFont,
                 titleColor: UIColor,
@@ -47,7 +47,7 @@ public class JBTitleOutsideAlertController: JBAlertController, JBAlertController
         view.backgroundColor = backgroundColor
     }
     
-    required public init!(coder aDecoder: NSCoder) {
+    required init!(coder aDecoder: NSCoder) {
         fatalError("Use designated initializer!")
     }
     

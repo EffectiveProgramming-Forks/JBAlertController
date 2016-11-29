@@ -6,11 +6,11 @@
 //
 //
 
-public class JBTitleInsideAlertController: JBAlertController, JBAlertControllerDelegate {
+class JBTitleInsideAlertController: JBAlertController, JBAlertControllerDelegate {
     
     // MARK: Designated initializer
     
-    public init(title: String,
+    init(title: String,
                 secondaryTitle: String,
                 titleFont: UIFont,
                 titleColor: UIColor,
@@ -38,7 +38,7 @@ public class JBTitleInsideAlertController: JBAlertController, JBAlertControllerD
         view.backgroundColor = backgroundColor
     }
     
-    required public init!(coder aDecoder: NSCoder) {
+    required init!(coder aDecoder: NSCoder) {
         fatalError("Use designated initializer!")
     }
     
