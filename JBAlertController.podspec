@@ -10,7 +10,7 @@ Pod::Spec.new do |s|
   s.platform = :ios
   s.ios.deployment_target = "10"
   s.name             = 'JBAlertController'
-  s.version          = '0.1.0'
+  s.version          = '0.1.1'
   s.summary          = 'JBAlertController is a Swift framework that allows the user to display a customizable alert view.'
   s.description      = 'JBAlertController is a Swift framework that allows the user to display a customizable alert view.'
   s.homepage         = 'https://github.com/jkbreunig/JBAlertController'

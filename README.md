@@ -65,7 +65,7 @@ alertController.show()
 static func alert(type: JBAlertControllerType,
                 title: String,
                 secondaryTitle: String,
-                titleFont: UIFont,  // UIFont.boldSystemFont(ofSize: 18)
+                titleFont: UIFont, // UIFont.boldSystemFont(ofSize: 18)
                 titleColor: UIColor, // UIColor.white
                 secondaryTitleFont: UIFont, // UIFont.systemFont(ofSize: 16)
                 secondaryTitleColor: UIColor, // UIColor.white
@@ -88,7 +88,7 @@ func addButton(_ title: String,
 
 func addContinueButton(titleColor: UIColor, // UIColor.white
                           font: UIFont, // UIFont.systemFont(ofSize: 16)
-                          backgroundColor: UIColor, UIColor.blue
+                          backgroundColor: // UIColor, UIColor.blue
                           handler: @escaping (() -> Void))
 
 func addCancelButton(titleColor: UIColor, // UIColor.white
