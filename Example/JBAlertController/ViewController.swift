@@ -59,13 +59,14 @@ class ViewController: UIViewController {
         let buttonColor = UIColor(red: 29/255, green: 53/255, blue: 187/255, alpha: 1)
         let cancelButtonColor = UIColor(red: 230/255, green: 57/255, blue: 70/255, alpha: 1)
         
-        let alertController = JBAlertController(title: "Devices",
-                                                secondaryTitle: "Select a device",
-                                                titleColor: titleColor,
-                                                secondaryTitleColor: titleColor,
-                                                alertViewTopMargin: 50,
-                                                backgroundColor: backgroundColor,
-                                                alertViewBackgroundColor: alertViewBackgroundColor)
+        let alertController = JBAlertController.alert(type: .titleOutside,
+                                                      title: "Devices",
+                                                      secondaryTitle: "Select a device",
+                                                      titleColor: titleColor,
+                                                      secondaryTitleColor: titleColor,
+                                                      alertViewTopMargin: 50,
+                                                      backgroundColor: backgroundColor,
+                                                      alertViewBackgroundColor: alertViewBackgroundColor)
         alertController.addButton(Device.iPhone7.title, titleColor: titleColor, backgroundColor: buttonColor) {
             [unowned self] in
             self.openURL(urlString: Device.iPhone7.urlString)

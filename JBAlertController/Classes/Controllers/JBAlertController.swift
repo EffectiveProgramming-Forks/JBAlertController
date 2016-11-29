@@ -8,6 +8,11 @@
 
 import UIKit
 
+public enum JBAlertControllerType {
+    case titleInside
+    case titleOutside
+}
+
 struct Defaults {
     struct Layout {
         static let titleLabelTopMargin: CGFloat = 70
@@ -36,20 +41,26 @@ struct Defaults {
     }
 }
 
+@objc protocol JBAlertControllerDelegate: class {
+    func setupAlertView()
+    func setupConstraints()
+    @objc optional func addScrollViewLabelSubviews()
+    @objc optional func animateShowScrollViewLabels()
+    @objc optional func hideScrollViewLabels()
+}
+
 public class JBAlertController: UIViewController {
-    private var alertView: JBAlertView!
-    private var alertViewTopMargin: CGFloat = Defaults.Layout.alertViewTopMargin
-    private let scrollView = UIScrollView()
-    private let titleLabel = UILabel()
-    private let secondaryTitleLabel = UILabel()
-    private var topConstraint: NSLayoutConstraint!
-    private var backgroundColor: UIColor = Defaults.Color.background
-    private let hideViewAnimationDuration: TimeInterval = 0.5
-    private let hideOffset = UIScreen.main.bounds.height + 100
+    var alertView: JBAlertView!
+    var alertViewTopMargin: CGFloat = Defaults.Layout.alertViewTopMargin
+    let scrollView = UIScrollView()
+    var topConstraint: NSLayoutConstraint!
+    var backgroundColor: UIColor = Defaults.Color.background
+    let hideViewAnimationDuration: TimeInterval = 0.5
+    let hideOffset = UIScreen.main.bounds.height + 100
+    weak var delegate: JBAlertControllerDelegate?
     
-    // MARK: Designated initializer
-    
-    public init(title: String,
+    public static func alert(type: JBAlertControllerType,
+                title: String,
                 secondaryTitle: String,
                 titleFont: UIFont = Defaults.Font.title,
                 titleColor: UIColor = Defaults.Color.title,
@@ -57,30 +68,27 @@ public class JBAlertController: UIViewController {
                 secondaryTitleColor: UIColor = Defaults.Color.secondaryTitle,
                 alertViewTopMargin: CGFloat = Defaults.Layout.alertViewTopMargin,
                 backgroundColor: UIColor = Defaults.Color.background,
-                alertViewBackgroundColor: UIColor = Defaults.Color.alertViewBackground) {
+                alertViewBackgroundColor: UIColor = Defaults.Color.alertViewBackground) -> JBAlertController {
+        if type == .titleInside {
+            return JBAlertController()
+        } else {
+            let controller = JBTitleOutsideAlertController(title: title,
+                                                           secondaryTitle: secondaryTitle,
+                                                           titleFont: titleFont,
+                                                           titleColor: titleColor,
+                                                           secondaryTitleFont: secondaryTitleFont,
+                                                           secondaryTitleColor: secondaryTitleColor,
+                                                           alertViewTopMargin: alertViewTopMargin,
+                                                           backgroundColor: backgroundColor,
+                                                           alertViewBackgroundColor: alertViewBackgroundColor)
+            return controller
+        }
+    }
+    
+    // MARK: Designated initializer
+    
+    init() {
         super.init(nibName: nil, bundle: nil)
-        titleLabel.setProperties(text: title,
-                                 font: titleFont,
-                                 textColor: titleColor,
-                                 backgroundColor: UIColor.clear,
-                                 textAlignment: .center,
-                                 numberOfLines: 0,
-                                 alpha: 0)
-        secondaryTitleLabel.setProperties(text: secondaryTitle,
-                                 font: secondaryTitleFont,
-                                 textColor: secondaryTitleColor,
-                                 backgroundColor: UIColor.clear,
-                                 textAlignment: .center,
-                                 numberOfLines: 0,
-                                 alpha: 0)
-        self.alertViewTopMargin = alertViewTopMargin
-        alertView = JBAlertView(backgroundColor: alertViewBackgroundColor, dismissHandler: {
-            [unowned self] in
-            self.hide()
-            return self.hideViewAnimationDuration
-        })
-        self.backgroundColor = backgroundColor
-        view.backgroundColor = backgroundColor
     }
     
     required public init!(coder aDecoder: NSCoder) {
@@ -90,23 +98,29 @@ public class JBAlertController: UIViewController {
     
     override public func viewDidLoad() {
         super.viewDidLoad()
-        addSubviews()
-        setupConstraints()
+        setupSubviews()
+        delegate?.setupConstraints()
         view.layoutIfNeeded()
     }
     
-    private func addSubviews() {
+    private func setupSubviews() {
+        delegate?.setupAlertView()
+        setupScrollView()
+        setupAlertView()
+        scrollView.addSubview(alertView)
+        delegate?.addScrollViewLabelSubviews?()
+    }
+    
+    private func setupScrollView() {
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         scrollView.isScrollEnabled = true
         scrollView.backgroundColor = backgroundColor
         view.addSubview(scrollView)
-        
+    }
+    
+    private func setupAlertView() {
         alertView.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = backgroundColor
-        scrollView.addSubview(alertView)
-
-        scrollView.addSubview(titleLabel)
-        scrollView.addSubview(secondaryTitleLabel)
     }
 
     public func addButton(_ title: String,
@@ -157,46 +171,20 @@ public class JBAlertController: UIViewController {
     }
     
     private func animateShowViews() {
-        UIView.animate(withDuration: 1.0) {
-            self.titleLabel.alpha = 1.0
-            self.secondaryTitleLabel.alpha = 1.0
-        }
+        delegate?.animateShowScrollViewLabels?()
         topConstraint.constant = alertViewTopMargin
         UIView.animate(withDuration: 0.6, delay: 0.4, options: UIViewAnimationOptions.curveEaseOut, animations: {
             self.view.layoutIfNeeded()
             }, completion: nil)
     }
-    
+
     func hide() {
         topConstraint.constant = hideOffset
         UIView.animate(withDuration: hideViewAnimationDuration, delay: 0.0, options: UIViewAnimationOptions.curveEaseInOut, animations: {
-            self.titleLabel.alpha = 0.0
-            self.secondaryTitleLabel.alpha = 0.0
+            self.delegate?.hideScrollViewLabels?()
             self.view.layoutIfNeeded()
             }, completion: { _ in
                 self.view.removeFromSuperview()
         })
-    }
-
-    func setupConstraints() {
-        let views = ["alertView": alertView,
-                     "titleLabel": titleLabel,
-                     "secondaryTitleLabel": secondaryTitleLabel]
-        
-        scrollView.fillSuperview()
-        topConstraint = NSLayoutConstraint(item: alertView,
-                                           attribute: .top,
-                                           relatedBy: .equal,
-                                           toItem: secondaryTitleLabel,
-                                           attribute: .bottom,
-                                           multiplier: 1,
-                                           constant: hideOffset)
-        scrollView.addConstraint(topConstraint)
-        scrollView.addConstraint(item: alertView, attribute: .bottom, relatedBy: .equal, toItem: scrollView, attribute: .bottom, constant: -Defaults.Layout.alertViewBottomMargin)
-        scrollView.addVFLConstraints(["V:|-\(Defaults.Layout.titleLabelTopMargin)-[titleLabel]-\(Defaults.Layout.titleLabelBottomMargin)-[secondaryTitleLabel]->=0-|",
-            "H:|-\(Defaults.Layout.xMargin)-[alertView]-\(Defaults.Layout.xMargin)-|",
-            "H:|-\(Defaults.Layout.xMargin)-[titleLabel(\(Defaults.Layout.titleLabelWidth))]-\(Defaults.Layout.xMargin)-|",
-            "H:|-\(Defaults.Layout.xMargin)-[secondaryTitleLabel]-\(Defaults.Layout.xMargin)-|"], views: views)
-        super.updateViewConstraints()
     }
 }

@@ -14,6 +14,8 @@
 		49854FDA1376946C12F1977FAD3FF2A9 /* UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 282FF645AD010280A205736D899CC0E9 /* UIButton.swift */; };
 		5DBB35437D46DFBA3DD131994D8EFBC7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBB3DE36805AF21409EC968A9691732F /* Foundation.framework */; };
 		61B15D25F4877F26E1BD0BF9AAA710E4 /* JBAlertController-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B7D9EA5C0DC8F6924B48A13531D11A7 /* JBAlertController-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A95FA0781DED03F2004A0C73 /* JBTitleInsideAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95FA0771DED03F2004A0C73 /* JBTitleInsideAlertController.swift */; };
+		A95FA07A1DED0400004A0C73 /* JBTitleOutsideAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95FA0791DED0400004A0C73 /* JBTitleOutsideAlertController.swift */; };
 		C05A6D867762E47177425857108AB3F3 /* Pods-JBAlertController_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 896F755DDB229351C0FDBFF5AA12A3D3 /* Pods-JBAlertController_Example-dummy.m */; };
 		C3F09336C9C4FF6E12766F7744C4452E /* JBAlertController-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = D7DFA24CBA12CBB768094EBE28DBF772 /* JBAlertController-dummy.m */; };
 		D114579DF36B6FE88CB5B021D78712E1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBB3DE36805AF21409EC968A9691732F /* Foundation.framework */; };
@@ -35,13 +37,13 @@
 
 /* Begin PBXFileReference section */
 		010B9D5336B9878AAD4204DEFCE09AC4 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		03CF225FE517FEC2F5DFE258CAF66673 /* Pods_JBAlertController_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_JBAlertController_Tests.framework; path = "Pods-JBAlertController_Tests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
-		0A9A79451AFDA818EB78E0B0C0186057 /* Pods-JBAlertController_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-JBAlertController_Example.modulemap"; sourceTree = "<group>"; };
+		03CF225FE517FEC2F5DFE258CAF66673 /* Pods_JBAlertController_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JBAlertController_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0A9A79451AFDA818EB78E0B0C0186057 /* Pods-JBAlertController_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-JBAlertController_Example.modulemap"; sourceTree = "<group>"; };
 		0E20E607FB47634D74A726D98412F35D /* Pods-JBAlertController_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-JBAlertController_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
 		11F72A433545E3AA345B0A0560557822 /* Pods-JBAlertController_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-JBAlertController_Tests-dummy.m"; sourceTree = "<group>"; };
 		157B91BF436EF60E804F23B7367DA657 /* Pods-JBAlertController_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-JBAlertController_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
-		1A106E6C47E4314E17EB84DFF1084241 /* JBAlertController.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = JBAlertController.framework; path = JBAlertController.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		1B9B8E3D930DD58BAF1CA80E7CEBB88C /* Pods-JBAlertController_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-JBAlertController_Tests.modulemap"; sourceTree = "<group>"; };
+		1A106E6C47E4314E17EB84DFF1084241 /* JBAlertController.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = JBAlertController.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1B9B8E3D930DD58BAF1CA80E7CEBB88C /* Pods-JBAlertController_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-JBAlertController_Tests.modulemap"; sourceTree = "<group>"; };
 		282FF645AD010280A205736D899CC0E9 /* UIButton.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = UIButton.swift; sourceTree = "<group>"; };
 		2F0302ADA58020159E9C45C8929EA405 /* Pods-JBAlertController_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-JBAlertController_Example.release.xcconfig"; sourceTree = "<group>"; };
 		3092EDE5580997606769A30F05CEBE4D /* Pods-JBAlertController_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-JBAlertController_Example.debug.xcconfig"; sourceTree = "<group>"; };
@@ -62,13 +64,15 @@
 		820A2F2BE4E05C3FD857929CEDC01B26 /* Pods-JBAlertController_Example-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-JBAlertController_Example-resources.sh"; sourceTree = "<group>"; };
 		82763388F50F10A582854E5D3F2D1428 /* JBAlertView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = JBAlertView.swift; sourceTree = "<group>"; };
 		896F755DDB229351C0FDBFF5AA12A3D3 /* Pods-JBAlertController_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-JBAlertController_Example-dummy.m"; sourceTree = "<group>"; };
-		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		95986316CB6E7FDF76317877D41D52D3 /* UILabel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = UILabel.swift; sourceTree = "<group>"; };
+		A95FA0771DED03F2004A0C73 /* JBTitleInsideAlertController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JBTitleInsideAlertController.swift; sourceTree = "<group>"; };
+		A95FA0791DED0400004A0C73 /* JBTitleOutsideAlertController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JBTitleOutsideAlertController.swift; sourceTree = "<group>"; };
 		C36C527DA1034C0B1E38D5B4435D70D7 /* Pods-JBAlertController_Tests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-JBAlertController_Tests-resources.sh"; sourceTree = "<group>"; };
 		CBB3DE36805AF21409EC968A9691732F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		CC8DD5DAC861194560095836E3B495F4 /* Pods_JBAlertController_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_JBAlertController_Example.framework; path = "Pods-JBAlertController_Example.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CC8DD5DAC861194560095836E3B495F4 /* Pods_JBAlertController_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JBAlertController_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7DFA24CBA12CBB768094EBE28DBF772 /* JBAlertController-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "JBAlertController-dummy.m"; sourceTree = "<group>"; };
-		F8D612084BD36FC408E4F8727504AA32 /* JBAlertController.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = JBAlertController.modulemap; sourceTree = "<group>"; };
+		F8D612084BD36FC408E4F8727504AA32 /* JBAlertController.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = JBAlertController.modulemap; sourceTree = "<group>"; };
 		FFEFC5ABB36F35B5566622F0343327B2 /* JBAlertController-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "JBAlertController-prefix.pch"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -107,7 +111,6 @@
 				2D1959776B0A0BB7D9874B32B080F435 /* Extensions */,
 				1819FF30804A32A85FBDE3D7A449197B /* Views */,
 			);
-			name = Classes;
 			path = Classes;
 			sourceTree = "<group>";
 		};
@@ -130,7 +133,6 @@
 			children = (
 				82763388F50F10A582854E5D3F2D1428 /* JBAlertView.swift */,
 			);
-			name = Views;
 			path = Views;
 			sourceTree = "<group>";
 		};
@@ -148,8 +150,9 @@
 			isa = PBXGroup;
 			children = (
 				654C0B183560F00A3F02F5759771E2DA /* JBAlertController.swift */,
+				A95FA0771DED03F2004A0C73 /* JBTitleInsideAlertController.swift */,
+				A95FA0791DED0400004A0C73 /* JBTitleOutsideAlertController.swift */,
 			);
-			name = Controllers;
 			path = Controllers;
 			sourceTree = "<group>";
 		};
@@ -178,7 +181,6 @@
 				95986316CB6E7FDF76317877D41D52D3 /* UILabel.swift */,
 				4837C1A088C80DC8DF378210E82300E7 /* UIView.swift */,
 			);
-			name = Extensions;
 			path = Extensions;
 			sourceTree = "<group>";
 		};
@@ -259,7 +261,6 @@
 			children = (
 				029F3FC6812B238B7EE12F51E0D0F290 /* Classes */,
 			);
-			name = JBAlertController;
 			path = JBAlertController;
 			sourceTree = "<group>";
 		};
@@ -394,10 +395,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A95FA0781DED03F2004A0C73 /* JBTitleInsideAlertController.swift in Sources */,
 				C3F09336C9C4FF6E12766F7744C4452E /* JBAlertController-dummy.m in Sources */,
 				E6ADC38D3FB07A8A3ED1D81FE7740E03 /* JBAlertController.swift in Sources */,
 				1C72C7C81DD7B1FE591C0AF97DB0B134 /* JBAlertView.swift in Sources */,
 				49854FDA1376946C12F1977FAD3FF2A9 /* UIButton.swift in Sources */,
+				A95FA07A1DED0400004A0C73 /* JBTitleOutsideAlertController.swift in Sources */,
 				DE7F650264F977370375042E7BAA0C43 /* UILabel.swift in Sources */,
 				0ECA25C28ACF4681ADD12357CC2F3013 /* UIView.swift in Sources */,
 			);
