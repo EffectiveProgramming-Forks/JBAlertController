@@ -9,7 +9,6 @@
 public class JBTitleOutsideAlertController: JBAlertController, JBAlertControllerDelegate {
     private let titleLabel = UILabel()
     private let secondaryTitleLabel = UILabel()
-    private var alertViewBackgroundColor = Defaults.Color.alertViewBackground
     
     // MARK: Designated initializer
     
@@ -38,8 +37,11 @@ public class JBTitleOutsideAlertController: JBAlertController, JBAlertController
                                           textAlignment: .center,
                                           numberOfLines: 0,
                                           alpha: 0)
+        alertView = JBAlertView(backgroundColor: alertViewBackgroundColor, dismissHandler: {
+            self.hide()
+            return self.hideViewAnimationDuration
+        })
         self.alertViewTopMargin = alertViewTopMargin
-        self.alertViewBackgroundColor = alertViewBackgroundColor
         self.backgroundColor = backgroundColor
         view.backgroundColor = backgroundColor
     }
@@ -49,14 +51,7 @@ public class JBTitleOutsideAlertController: JBAlertController, JBAlertController
     }
     
     //MARK: JBAlertControllerDelegate
-    
-    func setupAlertView() {
-        alertView = JBAlertView(backgroundColor: alertViewBackgroundColor, dismissHandler: {
-            self.hide()
-            return self.hideViewAnimationDuration
-        })
-    }
-    
+
     func addScrollViewLabelSubviews() {
         scrollView.addSubview(titleLabel)
         scrollView.addSubview(secondaryTitleLabel)

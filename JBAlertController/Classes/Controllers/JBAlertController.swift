@@ -42,7 +42,6 @@ struct Defaults {
 }
 
 @objc protocol JBAlertControllerDelegate: class {
-    func setupAlertView()
     func setupConstraints()
     @objc optional func addScrollViewLabelSubviews()
     @objc optional func animateShowScrollViewLabels()
@@ -70,7 +69,16 @@ public class JBAlertController: UIViewController {
                 backgroundColor: UIColor = Defaults.Color.background,
                 alertViewBackgroundColor: UIColor = Defaults.Color.alertViewBackground) -> JBAlertController {
         if type == .titleInside {
-            return JBAlertController()
+            let controller = JBTitleInsideAlertController(title: title,
+                                                           secondaryTitle: secondaryTitle,
+                                                           titleFont: titleFont,
+                                                           titleColor: titleColor,
+                                                           secondaryTitleFont: secondaryTitleFont,
+                                                           secondaryTitleColor: secondaryTitleColor,
+                                                           alertViewTopMargin: alertViewTopMargin,
+                                                           backgroundColor: backgroundColor,
+                                                           alertViewBackgroundColor: alertViewBackgroundColor)
+            return controller
         } else {
             let controller = JBTitleOutsideAlertController(title: title,
                                                            secondaryTitle: secondaryTitle,
@@ -85,7 +93,7 @@ public class JBAlertController: UIViewController {
         }
     }
     
-    // MARK: Designated initializer
+    //MARK: Designated initializer
     
     init() {
         super.init(nibName: nil, bundle: nil)
@@ -96,6 +104,8 @@ public class JBAlertController: UIViewController {
         fatalError("Use designated initializer!")
     }
     
+    //MARK: Setup views
+    
     override public func viewDidLoad() {
         super.viewDidLoad()
         setupSubviews()
@@ -104,9 +114,7 @@ public class JBAlertController: UIViewController {
     }
     
     private func setupSubviews() {
-        delegate?.setupAlertView()
         setupScrollView()
-        setupAlertView()
         scrollView.addSubview(alertView)
         delegate?.addScrollViewLabelSubviews?()
     }
@@ -161,6 +169,8 @@ public class JBAlertController: UIViewController {
                             handler: handler)
     }
     
+    //MARK: Show AlertView
+    
     public func show() {
         alertView.setupConstraints()
         alertView.layoutIfNeeded()
@@ -177,6 +187,8 @@ public class JBAlertController: UIViewController {
             self.view.layoutIfNeeded()
             }, completion: nil)
     }
+    
+    //MARK: Hide AlertView
 
     func hide() {
         topConstraint.constant = hideOffset

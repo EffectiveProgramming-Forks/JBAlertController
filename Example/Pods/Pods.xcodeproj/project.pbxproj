@@ -16,6 +16,7 @@
 		61B15D25F4877F26E1BD0BF9AAA710E4 /* JBAlertController-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B7D9EA5C0DC8F6924B48A13531D11A7 /* JBAlertController-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A95FA0781DED03F2004A0C73 /* JBTitleInsideAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95FA0771DED03F2004A0C73 /* JBTitleInsideAlertController.swift */; };
 		A95FA07A1DED0400004A0C73 /* JBTitleOutsideAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95FA0791DED0400004A0C73 /* JBTitleOutsideAlertController.swift */; };
+		A95FA07C1DED107A004A0C73 /* JBTitleAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95FA07B1DED107A004A0C73 /* JBTitleAlertView.swift */; };
 		C05A6D867762E47177425857108AB3F3 /* Pods-JBAlertController_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 896F755DDB229351C0FDBFF5AA12A3D3 /* Pods-JBAlertController_Example-dummy.m */; };
 		C3F09336C9C4FF6E12766F7744C4452E /* JBAlertController-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = D7DFA24CBA12CBB768094EBE28DBF772 /* JBAlertController-dummy.m */; };
 		D114579DF36B6FE88CB5B021D78712E1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBB3DE36805AF21409EC968A9691732F /* Foundation.framework */; };
@@ -68,6 +69,7 @@
 		95986316CB6E7FDF76317877D41D52D3 /* UILabel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = UILabel.swift; sourceTree = "<group>"; };
 		A95FA0771DED03F2004A0C73 /* JBTitleInsideAlertController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JBTitleInsideAlertController.swift; sourceTree = "<group>"; };
 		A95FA0791DED0400004A0C73 /* JBTitleOutsideAlertController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JBTitleOutsideAlertController.swift; sourceTree = "<group>"; };
+		A95FA07B1DED107A004A0C73 /* JBTitleAlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JBTitleAlertView.swift; sourceTree = "<group>"; };
 		C36C527DA1034C0B1E38D5B4435D70D7 /* Pods-JBAlertController_Tests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-JBAlertController_Tests-resources.sh"; sourceTree = "<group>"; };
 		CBB3DE36805AF21409EC968A9691732F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		CC8DD5DAC861194560095836E3B495F4 /* Pods_JBAlertController_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JBAlertController_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -132,6 +134,7 @@
 			isa = PBXGroup;
 			children = (
 				82763388F50F10A582854E5D3F2D1428 /* JBAlertView.swift */,
+				A95FA07B1DED107A004A0C73 /* JBTitleAlertView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -402,6 +405,7 @@
 				49854FDA1376946C12F1977FAD3FF2A9 /* UIButton.swift in Sources */,
 				A95FA07A1DED0400004A0C73 /* JBTitleOutsideAlertController.swift in Sources */,
 				DE7F650264F977370375042E7BAA0C43 /* UILabel.swift in Sources */,
+				A95FA07C1DED107A004A0C73 /* JBTitleAlertView.swift in Sources */,
 				0ECA25C28ACF4681ADD12357CC2F3013 /* UIView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
