@@ -22,14 +22,8 @@ public class JBAlertViewButton: UIButton {
 class JBAlertView: UIView {
     var dismissHandler: (() -> TimeInterval)?
     var buttons: [JBAlertViewButton] = []
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-    }
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-    }
+
+    //MARK: Designated initializer
     
     init(backgroundColor: UIColor, dismissHandler: @escaping (() -> TimeInterval)) {
         super.init(frame: CGRect.zero)
@@ -62,6 +56,10 @@ class JBAlertView: UIView {
         addSubview(button)
     }
     
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("Use designated initializer!")
+    }
+    
     //MARK: Button events
     
     func didTapButton(button: JBAlertViewButton) {
@@ -78,11 +76,7 @@ class JBAlertView: UIView {
     //MARK: Constraints
     
     func setupConstraints() {
-        let x: CGFloat = 10
-        let top: CGFloat = 20
-        let bottom: CGFloat = 20
-        let ySpacing: CGFloat = 10
-        let height: CGFloat = 50
+        
         for (index, button) in buttons.enumerated() {
             if index == 0 {
                 addConstraint(item: button,
@@ -90,7 +84,7 @@ class JBAlertView: UIView {
                               relatedBy: .equal,
                               toItem: self,
                               attribute: .top,
-                              constant: top)
+                              constant: Defaults.Layout.AlertView.buttonTopMargin)
             }
             if index == buttons.count - 1 {
                 addConstraint(item: button,
@@ -98,7 +92,7 @@ class JBAlertView: UIView {
                               relatedBy: .equal,
                               toItem: self,
                               attribute: .bottom,
-                              constant: -bottom)
+                              constant: -Defaults.Layout.AlertView.buttonBottomMargin)
             } else if index == buttons.count - 2 &&
                 (buttons[index + 1].type == .continueType || buttons[index + 1].type == .cancelType) {
                 addConstraint(item: button,
@@ -106,29 +100,29 @@ class JBAlertView: UIView {
                               relatedBy: .equal,
                               toItem: buttons[index + 1],
                               attribute: .top,
-                              constant: -bottom)
+                              constant: -Defaults.Layout.AlertView.buttonBottomMargin)
             } else {
                 addConstraint(item: button,
                               attribute: .bottom,
                               relatedBy: .equal,
                               toItem: buttons[index + 1],
                               attribute: .top,
-                              constant: -ySpacing)
+                              constant: -Defaults.Layout.AlertView.buttonYSpacing)
             }
             addConstraint(item: button,
                           attribute: .leading,
                           relatedBy: .equal,
                           toItem: self,
                           attribute: .leading,
-                          constant: x)
+                          constant: Defaults.Layout.AlertView.buttonXMargin)
             
             addConstraint(item: button,
                           attribute: .trailing,
                           relatedBy: .equal,
                           toItem: self,
                           attribute: .trailing,
-                          constant: -x)
-            button.setHeight(height)
+                          constant: -Defaults.Layout.AlertView.buttonXMargin)
+            button.setHeight(Defaults.Layout.AlertView.buttonHeight)
         }
         super.updateConstraints()
     }

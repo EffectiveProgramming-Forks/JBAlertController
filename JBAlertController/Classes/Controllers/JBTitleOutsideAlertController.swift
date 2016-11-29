@@ -39,8 +39,9 @@ public class JBTitleOutsideAlertController: JBAlertController, JBAlertController
                                           alpha: 0)
         alertView = JBAlertView(backgroundColor: alertViewBackgroundColor, dismissHandler: {
             self.hide()
-            return self.hideViewAnimationDuration
+            return Defaults.Animate.AlertView.Show.duration + Defaults.Animate.AlertView.Show.delay
         })
+        alertView.translatesAutoresizingMaskIntoConstraints = false
         self.alertViewTopMargin = alertViewTopMargin
         self.backgroundColor = backgroundColor
         view.backgroundColor = backgroundColor
@@ -58,7 +59,7 @@ public class JBTitleOutsideAlertController: JBAlertController, JBAlertController
     }
     
     func animateShowScrollViewLabels() {
-        UIView.animate(withDuration: 1.0) {
+        UIView.animate(withDuration: Defaults.Animate.Title.Show.duration) {
             self.titleLabel.alpha = 1.0
             self.secondaryTitleLabel.alpha = 1.0
         }
@@ -83,11 +84,16 @@ public class JBTitleOutsideAlertController: JBAlertController, JBAlertController
                                            multiplier: 1,
                                            constant: hideOffset)
         scrollView.addConstraint(topConstraint)
-        scrollView.addConstraint(item: alertView, attribute: .bottom, relatedBy: .equal, toItem: scrollView, attribute: .bottom, constant: -Defaults.Layout.alertViewBottomMargin)
-        scrollView.addVFLConstraints(["V:|-\(Defaults.Layout.titleLabelTopMargin)-[titleLabel]-\(Defaults.Layout.titleLabelBottomMargin)-[secondaryTitleLabel]->=0-|",
-            "H:|-\(Defaults.Layout.xMargin)-[alertView]-\(Defaults.Layout.xMargin)-|",
-            "H:|-\(Defaults.Layout.xMargin)-[titleLabel(\(Defaults.Layout.titleLabelWidth))]-\(Defaults.Layout.xMargin)-|",
-            "H:|-\(Defaults.Layout.xMargin)-[secondaryTitleLabel]-\(Defaults.Layout.xMargin)-|"], views: views)
+        scrollView.addConstraint(item: alertView,
+                                 attribute: .bottom,
+                                 relatedBy: .equal,
+                                 toItem: scrollView,
+                                 attribute: .bottom,
+                                 constant: -Defaults.Layout.AlertController.alertViewBottomMargin)
+        scrollView.addVFLConstraints(["V:|-\(Defaults.Layout.AlertController.titleLabelTopMargin)-[titleLabel]-\(Defaults.Layout.AlertController.titleLabelBottomMargin)-[secondaryTitleLabel]->=0-|",
+            "H:|-\(Defaults.Layout.AlertController.xMargin)-[alertView(\(Defaults.Layout.AlertController.alertViewWidth))]-\(Defaults.Layout.AlertController.xMargin)-|",
+            "H:|-\(Defaults.Layout.AlertController.xMargin)-[titleLabel]-\(Defaults.Layout.AlertController.xMargin)-|",
+            "H:|-\(Defaults.Layout.AlertController.xMargin)-[secondaryTitleLabel]-\(Defaults.Layout.AlertController.xMargin)-|"], views: views)
         super.updateViewConstraints()
     }
 }

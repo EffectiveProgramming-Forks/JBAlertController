@@ -59,7 +59,7 @@ class ViewController: UIViewController {
         let buttonColor = UIColor(red: 29/255, green: 53/255, blue: 187/255, alpha: 1)
         let cancelButtonColor = UIColor(red: 230/255, green: 57/255, blue: 70/255, alpha: 1)
         
-        let alertController = JBAlertController.alert(type: .titleOutside,
+        let alertController = JBAlertController.alert(type: .titleInside,
                                                       title: "Devices",
                                                       secondaryTitle: "Select a device",
                                                       titleColor: titleColor,

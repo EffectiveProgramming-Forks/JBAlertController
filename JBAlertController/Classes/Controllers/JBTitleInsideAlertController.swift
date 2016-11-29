@@ -30,8 +30,9 @@ public class JBTitleInsideAlertController: JBAlertController, JBAlertControllerD
                                      secondaryTitleColor: secondaryTitleColor,
                                      dismissHandler: {
             self.hide()
-            return self.hideViewAnimationDuration
+            return Defaults.Animate.AlertView.Show.duration + Defaults.Animate.AlertView.Show.delay
         })
+        alertView.translatesAutoresizingMaskIntoConstraints = false
         self.alertViewTopMargin = alertViewTopMargin
         self.backgroundColor = backgroundColor
         view.backgroundColor = backgroundColor
@@ -55,8 +56,8 @@ public class JBTitleInsideAlertController: JBAlertController, JBAlertControllerD
                                            multiplier: 1,
                                            constant: hideOffset)
         scrollView.addConstraint(topConstraint)
-        scrollView.addConstraint(item: alertView, attribute: .bottom, relatedBy: .equal, toItem: scrollView, attribute: .bottom, constant: -Defaults.Layout.alertViewBottomMargin)
-        scrollView.addVFLConstraint("H:|-\(Defaults.Layout.xMargin)-[alertView]-\(Defaults.Layout.xMargin)-|", views: views)
+        scrollView.addConstraint(item: alertView, attribute: .bottom, relatedBy: .equal, toItem: scrollView, attribute: .bottom, constant: -Defaults.Layout.AlertController.alertViewBottomMargin)
+        scrollView.addVFLConstraint("H:|-\(Defaults.Layout.AlertController.xMargin)-[alertView(\(Defaults.Layout.AlertController.alertViewWidth))]-\(Defaults.Layout.AlertController.xMargin)-|", views: views)
         super.updateViewConstraints()
     }
 }

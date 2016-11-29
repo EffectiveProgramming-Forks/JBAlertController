@@ -10,6 +10,8 @@ class JBTitleAlertView: JBAlertView {
     private let titleLabel = UILabel()
     private let secondaryTitleLabel = UILabel()
     
+    //MARK: Designated initializer
+    
     init(backgroundColor: UIColor,
          title: String,
          secondaryTitle: String,
@@ -25,7 +27,7 @@ class JBTitleAlertView: JBAlertView {
                                  backgroundColor: UIColor.clear,
                                  textAlignment: .center,
                                  numberOfLines: 0,
-                                 alpha: 0)
+                                 alpha: 1)
         addSubview(titleLabel)
         secondaryTitleLabel.setProperties(text: secondaryTitle,
                                           font: secondaryTitleFont,
@@ -33,12 +35,12 @@ class JBTitleAlertView: JBAlertView {
                                           backgroundColor: UIColor.clear,
                                           textAlignment: .center,
                                           numberOfLines: 0,
-                                          alpha: 0)
+                                          alpha: 1)
         addSubview(secondaryTitleLabel)
     }
     
     required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        fatalError("Use designated initializer!")
     }
     
     //MARK: Constraints
@@ -46,11 +48,6 @@ class JBTitleAlertView: JBAlertView {
     override func setupConstraints() {
         setupLabelConstraints()
 
-        let x: CGFloat = 10
-        let top: CGFloat = 20
-        let bottom: CGFloat = 20
-        let ySpacing: CGFloat = 10
-        let height: CGFloat = 50
         for (index, button) in buttons.enumerated() {
             if index == 0 {
                 addConstraint(item: button,
@@ -58,7 +55,7 @@ class JBTitleAlertView: JBAlertView {
                               relatedBy: .equal,
                               toItem: secondaryTitleLabel,
                               attribute: .bottom,
-                              constant: top)
+                              constant: Defaults.Layout.AlertView.buttonTopMargin)
             }
             if index == buttons.count - 1 {
                 addConstraint(item: button,
@@ -66,7 +63,7 @@ class JBTitleAlertView: JBAlertView {
                               relatedBy: .equal,
                               toItem: self,
                               attribute: .bottom,
-                              constant: -bottom)
+                              constant: -Defaults.Layout.AlertView.buttonBottomMargin)
             } else if index == buttons.count - 2 &&
                 (buttons[index + 1].type == .continueType || buttons[index + 1].type == .cancelType) {
                 addConstraint(item: button,
@@ -74,29 +71,29 @@ class JBTitleAlertView: JBAlertView {
                               relatedBy: .equal,
                               toItem: buttons[index + 1],
                               attribute: .top,
-                              constant: -bottom)
+                              constant: -Defaults.Layout.AlertView.buttonBottomMargin)
             } else {
                 addConstraint(item: button,
                               attribute: .bottom,
                               relatedBy: .equal,
                               toItem: buttons[index + 1],
                               attribute: .top,
-                              constant: -ySpacing)
+                              constant: -Defaults.Layout.AlertView.buttonYSpacing)
             }
             addConstraint(item: button,
                           attribute: .leading,
                           relatedBy: .equal,
                           toItem: self,
                           attribute: .leading,
-                          constant: x)
+                          constant: Defaults.Layout.AlertView.buttonXMargin)
             
             addConstraint(item: button,
                           attribute: .trailing,
                           relatedBy: .equal,
                           toItem: self,
                           attribute: .trailing,
-                          constant: -x)
-            button.setHeight(height)
+                          constant: -Defaults.Layout.AlertView.buttonXMargin)
+            button.setHeight(Defaults.Layout.AlertView.buttonHeight)
         }
         super.updateConstraints()
     }
@@ -105,27 +102,27 @@ class JBTitleAlertView: JBAlertView {
         let views = ["titleLabel": titleLabel,
                      "secondaryTitleLabel": secondaryTitleLabel]
         addVFLConstraints([
-            "H:|-\(Defaults.Layout.xMargin)-[titleLabel(\(Defaults.Layout.titleLabelWidth))]-\(Defaults.Layout.xMargin)-|",
-            "H:|-\(Defaults.Layout.xMargin)-[secondaryTitleLabel]-\(Defaults.Layout.xMargin)-|"], views: views)
+            "H:|-\(Defaults.Layout.AlertView.titleLabelXMargin)-[titleLabel]-\(Defaults.Layout.AlertView.titleLabelXMargin)-|",
+            "H:|-\(Defaults.Layout.AlertView.titleLabelXMargin)-[secondaryTitleLabel]-\(Defaults.Layout.AlertView.titleLabelXMargin)-|"], views: views)
         addConstraint(item: titleLabel,
                       attribute: .top,
                       relatedBy: .equal,
                       toItem: self,
                       attribute: .top,
-                      constant: Defaults.Layout.titleLabelTopMargin)
+                      constant: Defaults.Layout.AlertView.titleLabelTopMargin)
         addConstraint(item: secondaryTitleLabel,
                       attribute: .top,
                       relatedBy: .equal,
                       toItem: titleLabel,
                       attribute: .bottom,
-                      constant: Defaults.Layout.titleLabelBottomMargin)
+                      constant: Defaults.Layout.AlertController.titleLabelBottomMargin)
         if buttons.isEmpty {
             addConstraint(item: secondaryTitleLabel,
                           attribute: .bottom,
                           relatedBy: .equal,
                           toItem: self,
                           attribute: .bottom,
-                          constant: -20)
+                          constant: -Defaults.Layout.AlertView.buttonBottomMargin)
         }
     }
 }

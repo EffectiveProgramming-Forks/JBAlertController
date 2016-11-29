@@ -13,34 +13,6 @@ public enum JBAlertControllerType {
     case titleOutside
 }
 
-struct Defaults {
-    struct Layout {
-        static let titleLabelTopMargin: CGFloat = 70
-        static let titleLabelBottomMargin: CGFloat = 20
-        static let titleLabelWidth: CGFloat = UIScreen.main.bounds.width - (Defaults.Layout.xMargin * 2)
-        static let alertViewTopMargin: CGFloat = 50
-        static let alertViewBottomMargin: CGFloat = 20
-        static let xMargin: CGFloat = 40
-    }
-    struct Color {
-        static let background = UIColor.blue
-        static let alertViewBackground = UIColor.white
-        static let buttonTitle = UIColor.white
-        static let buttonBackground = UIColor.blue
-        static let cancelBackground = UIColor.orange
-        static let continueBackground = UIColor.orange
-        static let cancelButtonBackground = UIColor.orange
-        static let continueButtonBackground = UIColor.orange
-        static let title = UIColor.white
-        static let secondaryTitle = UIColor.white
-    }
-    struct Font {
-        static let title = UIFont.boldSystemFont(ofSize: 18)
-        static let secondaryTitle = UIFont.systemFont(ofSize: 16)
-        static let button = UIFont.systemFont(ofSize: 16)
-    }
-}
-
 @objc protocol JBAlertControllerDelegate: class {
     func setupConstraints()
     @objc optional func addScrollViewLabelSubviews()
@@ -50,11 +22,10 @@ struct Defaults {
 
 public class JBAlertController: UIViewController {
     var alertView: JBAlertView!
-    var alertViewTopMargin: CGFloat = Defaults.Layout.alertViewTopMargin
+    var alertViewTopMargin: CGFloat = Defaults.Layout.AlertController.alertViewTopMargin
     let scrollView = UIScrollView()
     var topConstraint: NSLayoutConstraint!
     var backgroundColor: UIColor = Defaults.Color.background
-    let hideViewAnimationDuration: TimeInterval = 0.5
     let hideOffset = UIScreen.main.bounds.height + 100
     weak var delegate: JBAlertControllerDelegate?
     
@@ -65,7 +36,7 @@ public class JBAlertController: UIViewController {
                 titleColor: UIColor = Defaults.Color.title,
                 secondaryTitleFont: UIFont = Defaults.Font.secondaryTitle,
                 secondaryTitleColor: UIColor = Defaults.Color.secondaryTitle,
-                alertViewTopMargin: CGFloat = Defaults.Layout.alertViewTopMargin,
+                alertViewTopMargin: CGFloat = Defaults.Layout.AlertController.alertViewTopMargin,
                 backgroundColor: UIColor = Defaults.Color.background,
                 alertViewBackgroundColor: UIColor = Defaults.Color.alertViewBackground) -> JBAlertController {
         if type == .titleInside {
@@ -183,7 +154,7 @@ public class JBAlertController: UIViewController {
     private func animateShowViews() {
         delegate?.animateShowScrollViewLabels?()
         topConstraint.constant = alertViewTopMargin
-        UIView.animate(withDuration: 0.6, delay: 0.4, options: UIViewAnimationOptions.curveEaseOut, animations: {
+        UIView.animate(withDuration: Defaults.Animate.AlertView.Show.duration, delay: Defaults.Animate.AlertView.Show.delay, options: UIViewAnimationOptions.curveEaseOut, animations: {
             self.view.layoutIfNeeded()
             }, completion: nil)
     }
@@ -192,7 +163,7 @@ public class JBAlertController: UIViewController {
 
     func hide() {
         topConstraint.constant = hideOffset
-        UIView.animate(withDuration: hideViewAnimationDuration, delay: 0.0, options: UIViewAnimationOptions.curveEaseInOut, animations: {
+        UIView.animate(withDuration: Defaults.Animate.AlertView.Hide.duration, delay: Defaults.Animate.AlertView.Hide.delay, options: UIViewAnimationOptions.curveEaseInOut, animations: {
             self.delegate?.hideScrollViewLabels?()
             self.view.layoutIfNeeded()
             }, completion: { _ in
