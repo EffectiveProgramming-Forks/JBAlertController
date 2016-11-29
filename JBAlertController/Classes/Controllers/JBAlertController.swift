@@ -26,7 +26,7 @@ public class JBAlertController: UIViewController {
     let scrollView = UIScrollView()
     var topConstraint: NSLayoutConstraint!
     var backgroundColor: UIColor = Defaults.Color.background
-    let hideOffset = UIScreen.main.bounds.height + 100
+    let hideOffset: CGFloat = UIScreen.main.bounds.height + 300
     weak var delegate: JBAlertControllerDelegate?
     
     public static func alert(type: JBAlertControllerType,

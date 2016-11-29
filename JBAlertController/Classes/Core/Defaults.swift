@@ -25,7 +25,7 @@ struct Defaults {
             static let buttonYSpacing: CGFloat = 10
             static let buttonHeight: CGFloat = 50
             static let titleLabelXMargin: CGFloat = 20
-            static let titleLabelTopMargin: CGFloat = 20
+            static let titleLabelTopMargin: CGFloat = 30
         }
     }
     struct Color {

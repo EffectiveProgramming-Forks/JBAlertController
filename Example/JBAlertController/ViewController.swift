@@ -37,11 +37,22 @@ enum Device: Int {
     }
 }
 
+struct Config {
+    var type: JBAlertControllerType
+    var alertViewTopMargin: CGFloat
+    var titleColor: UIColor
+    var buttonTitleColor: UIColor
+    var alertViewBackgroundColor: UIColor
+    var buttonColor: UIColor
+    var cancelButtonColor: UIColor
+    var backgroundColor: UIColor
+}
+
 class ViewController: UIViewController {
-    let backgroundColor = UIColor(red: 69/255, green: 123/255, blue: 157/255, alpha: 1)
+    var isTitleOutside = true
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = backgroundColor
+        view.backgroundColor = UIColor(red: 69/255, green: 123/255, blue: 157/255, alpha: 1)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -53,41 +64,63 @@ class ViewController: UIViewController {
         return .lightContent
     }
     
+    func getConfig() -> Config {
+        let config: Config
+        if isTitleOutside {
+            config = Config(type: .titleOutside,
+                            alertViewTopMargin: 50,
+                            titleColor: UIColor(red: 241/255, green: 250/255, blue: 238/255, alpha: 1),
+                            buttonTitleColor: UIColor(red: 241/255, green: 250/255, blue: 238/255, alpha: 1),
+                            alertViewBackgroundColor: UIColor(red: 241/255, green: 250/255, blue: 238/255, alpha: 1),
+                            buttonColor: UIColor(red: 29/255, green: 53/255, blue: 187/255, alpha: 1),
+                            cancelButtonColor: UIColor(red: 230/255, green: 57/255, blue: 70/255, alpha: 1),
+                            backgroundColor: UIColor(red: 69/255, green: 123/255, blue: 157/255, alpha: 1))
+        } else {
+            config = Config(type: .titleInside,
+                            alertViewTopMargin: 80,
+                            titleColor: UIColor(red: 80/255, green: 81/255, blue: 79/255, alpha: 1),
+                            buttonTitleColor: UIColor(red: 241/255, green: 250/255, blue: 238/255, alpha: 1),
+                            alertViewBackgroundColor: UIColor(red: 241/255, green: 250/255, blue: 238/255, alpha: 1),
+                            buttonColor: UIColor(red: 36/255, green: 123/255, blue: 160/255, alpha: 1),
+                            cancelButtonColor: UIColor(red: 242/255, green: 95/255, blue: 92/255, alpha: 1),
+                            backgroundColor: UIColor(red: 112/255, green: 193/255, blue: 179/255, alpha: 1))
+        }
+        view.backgroundColor = config.backgroundColor
+        isTitleOutside = !isTitleOutside
+        return config
+    }
+    
     func addAlertView() {
-        let titleColor = UIColor(red: 241/255, green: 250/255, blue: 238/255, alpha: 1)
-        let alertViewBackgroundColor = UIColor(red: 241/255, green: 250/255, blue: 238/255, alpha: 1)
-        let buttonColor = UIColor(red: 29/255, green: 53/255, blue: 187/255, alpha: 1)
-        let cancelButtonColor = UIColor(red: 230/255, green: 57/255, blue: 70/255, alpha: 1)
-        
-        let alertController = JBAlertController.alert(type: .titleInside,
+        let config = getConfig()
+        let alertController = JBAlertController.alert(type: config.type,
                                                       title: "Devices",
                                                       secondaryTitle: "Select a device",
-                                                      titleColor: titleColor,
-                                                      secondaryTitleColor: titleColor,
-                                                      alertViewTopMargin: 50,
-                                                      backgroundColor: backgroundColor,
-                                                      alertViewBackgroundColor: alertViewBackgroundColor)
-        alertController.addButton(Device.iPhone7.title, titleColor: titleColor, backgroundColor: buttonColor) {
+                                                      titleColor: config.titleColor,
+                                                      secondaryTitleColor: config.titleColor,
+                                                      alertViewTopMargin: config.alertViewTopMargin,
+                                                      backgroundColor: config.backgroundColor,
+                                                      alertViewBackgroundColor: config.alertViewBackgroundColor)
+        alertController.addButton(Device.iPhone7.title, titleColor: config.buttonTitleColor, backgroundColor: config.buttonColor) {
             [unowned self] in
             self.openURL(urlString: Device.iPhone7.urlString)
         }
-        alertController.addButton(Device.samsungGalaxyS7.title, titleColor: titleColor, backgroundColor: buttonColor) {
+        alertController.addButton(Device.samsungGalaxyS7.title, titleColor: config.buttonTitleColor, backgroundColor: config.buttonColor) {
             [unowned self] in
             self.openURL(urlString: Device.samsungGalaxyS7.urlString)
         }
-        alertController.addButton(Device.pixel.title, titleColor: titleColor, backgroundColor: buttonColor) {
+        alertController.addButton(Device.pixel.title, titleColor: config.buttonTitleColor, backgroundColor: config.buttonColor) {
             [unowned self] in
             self.openURL(urlString: Device.pixel.urlString)
         }
-        alertController.addButton(Device.lGG5.title, titleColor: titleColor, backgroundColor: buttonColor) {
+        alertController.addButton(Device.lGG5.title, titleColor: config.buttonTitleColor, backgroundColor: config.buttonColor) {
             [unowned self] in
             self.openURL(urlString: Device.lGG5.urlString)
         }
-        alertController.addButton(Device.motorolaMotoZ.title, titleColor: titleColor, backgroundColor: buttonColor) {
+        alertController.addButton(Device.motorolaMotoZ.title, titleColor: config.buttonTitleColor, backgroundColor: config.buttonColor) {
             [unowned self] in
             self.openURL(urlString: Device.motorolaMotoZ.urlString)
         }
-        alertController.addCancelButton(titleColor: titleColor, backgroundColor: cancelButtonColor) {
+        alertController.addCancelButton(titleColor: config.buttonTitleColor, backgroundColor: config.cancelButtonColor) {
             [unowned self] in
             self.addAlertView()
         }
