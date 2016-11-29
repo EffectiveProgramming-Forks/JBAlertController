@@ -4,7 +4,7 @@
 [![License](https://img.shields.io/cocoapods/l/JBAlertController.svg?style=flat)](http://cocoapods.org/pods/JBAlertController)
 [![Platform](https://img.shields.io/cocoapods/p/JBAlertController.svg?style=flat)](http://cocoapods.org/pods/JBAlertController)
 
-![](http://giphy.com/gifs/k6qUPuotbySSk)
+![](http://i.giphy.com/k6qUPuotbySSk.gif)
 
 **JBAlertController** is a Swift framework that allows the user to display a customizable alert view.
 
@@ -65,13 +65,13 @@ alertController.show()
 static func alert(type: JBAlertControllerType,
                 title: String,
                 secondaryTitle: String,
-                titleFont: UIFont,  // default is UIFont.boldSystemFont(ofSize: 18)
-                titleColor: UIColor, // default is UIColor.white
-                secondaryTitleFont: UIFont, // default is UIFont.systemFont(ofSize: 16)
-                secondaryTitleColor: UIColor, // default is UIColor.white
-                alertViewTopMargin: CGFloat, // default is 50
-                backgroundColor: UIColor, // default is UIColor.blue
-                alertViewBackgroundColor: UIColor,  // default is UIColor.white
+                titleFont: UIFont,  // UIFont.boldSystemFont(ofSize: 18)
+                titleColor: UIColor, // UIColor.white
+                secondaryTitleFont: UIFont, // UIFont.systemFont(ofSize: 16)
+                secondaryTitleColor: UIColor, // UIColor.white
+                alertViewTopMargin: CGFloat, // 50
+                backgroundColor: UIColor, // UIColor.blue
+                alertViewBackgroundColor: UIColor,  // UIColor.white
        			) -> JBAlertController   
 
 enum JBAlertControllerType {
@@ -80,20 +80,20 @@ enum JBAlertControllerType {
 } 
 
 func addButton(_ title: String,
-                   titleColor: UIColor, // default is UIColor.white
-                   font: UIFont, // default is UIFont.systemFont(ofSize: 16)
-                   backgroundColor: UIColor = Defaults.Color.buttonBackground,
+                   titleColor: UIColor, // UIColor.white
+                   font: UIFont, // UIFont.systemFont(ofSize: 16)
+                   backgroundColor: UIColor, // UIColor.blue
                    type: JBAlertButtonType = .defaultType,
                    handler: @escaping (() -> Void))
 
-func addContinueButton(titleColor: UIColor, // default is UIColor.white
-                          font: UIFont, // default is UIFont.systemFont(ofSize: 16)
-                          backgroundColor: UIColor, // default is UIColor.blue
+func addContinueButton(titleColor: UIColor, // UIColor.white
+                          font: UIFont, // UIFont.systemFont(ofSize: 16)
+                          backgroundColor: UIColor, UIColor.blue
                           handler: @escaping (() -> Void))
 
-func addCancelButton(titleColor: UIColor, // default is UIColor.white
-                                  font: UIFont, // default is UIFont.systemFont(ofSize: 16)
-                                  backgroundColor: UIColor, // default is UIColor.blue
+func addCancelButton(titleColor: UIColor, // UIColor.white
+                                  font: UIFont, // UIFont.systemFont(ofSize: 16)
+                                  backgroundColor: UIColor, // UIColor.blue
                                   handler: @escaping (() -> Void))
 
 func show()
