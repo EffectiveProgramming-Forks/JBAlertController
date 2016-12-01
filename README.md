@@ -100,6 +100,10 @@ func show()
 
 ```
 
+### JBAlertController Classes
+
+[![JBAlertControllerClasses.png](https://s13.postimg.org/lg9pvrbev/JBAlert_Controller_Classes.png)](https://postimg.org/image/rtysz0gar/)
+
 ## Author
 
 Jeff Breunig, jkbreunig@gmail.com
