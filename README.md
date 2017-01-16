@@ -4,8 +4,6 @@
 [![License](https://img.shields.io/cocoapods/l/JBAlertController.svg?style=flat)](http://cocoapods.org/pods/JBAlertController)
 [![Platform](https://img.shields.io/cocoapods/p/JBAlertController.svg?style=flat)](http://cocoapods.org/pods/JBAlertController)
 
-![](http://i.giphy.com/k6qUPuotbySSk.gif)
-
 **JBAlertController** is a Swift framework that allows the user to display a customizable alert view.
 
 ## Requirements
@@ -100,13 +98,9 @@ func show()
 
 ```
 
-### JBAlertController Classes
-
-[![JBAlertControllerClasses.png](https://s13.postimg.org/lg9pvrbev/JBAlert_Controller_Classes.png)](https://postimg.org/image/rtysz0gar/)
-
 ## Author
 
-Jeff Breunig, jkbreunig@gmail.com
+Jeff Breunig
 
 ## License
 
